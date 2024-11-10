@@ -1,13 +1,15 @@
 #pragma once
 
-#include "GL/freeglut.h"
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include "GL\freeglut.h"
+#include "glm\glm.hpp"
+#include "GraphicObject.h"
+#include <cstdio>
+#include <GL\gl.h>
+#include <GL\glu.h>
+#include <glm\gtc\matrix_transform.hpp>
+#include <glm\gtc\type_ptr.hpp> 
 #include <iostream>
-#include <stdio.h>
+#include <string>
 #include <vector>
 #include <windows.h>
 using namespace glm;
@@ -22,7 +24,7 @@ public:
     Camera(float x, float y, float z);
     // установка и получение позиции камеры
     void setPosition(vec3 position);
-    vec3 getPosition() const;
+    vec3 getPosition();
     //функции для перемещения камеры
     void rotateLeftRight(float degree);
     void rotateUpDown(float degree);
@@ -40,5 +42,3 @@ private:
     // позиция камеры
     vec3 position;
 };
-
-

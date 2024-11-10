@@ -1,83 +1,84 @@
 #include "GraphicObject.h"
 
-GraphicObjects::GraphicObjects()
+GraphicObject::GraphicObject()
 {
 	recalculateModelMatrix();
 }
 
-void GraphicObjects::setPosition(glm::vec3 position)
+void GraphicObject::setPosition(glm::vec3 position)
 {
 	this->position = position;
 
 	recalculateModelMatrix();
 }
 
-vec3 GraphicObjects::getPosition() const
+vec3 GraphicObject::getPosition() const
 {
 	return this->position;
 }
 
-void GraphicObjects::setAngle(float grad)
+void GraphicObject::setAngle(float grad)
 {
 	this->angle = grad;
 
 	recalculateModelMatrix();
 }
 
-float GraphicObjects::getAngle() const
+float GraphicObject::getAngle() const
 {
 	return this->angle;
 }
 
-void GraphicObjects::setColor(vec3 color)
+void GraphicObject::setColor(vec3 color)
 {
 	this->color = color;
 }
 
-vec3 GraphicObjects::getColor() const
+vec3 GraphicObject::getColor() const
 {
 	return this->color;
 }
 
-void GraphicObjects::setScale(vec3 scale)
+void GraphicObject::setScale(vec3 scale)
 {
 	this->scal = scale;
 }
 
-vec3 GraphicObjects::getScale()
+vec3 GraphicObject::getScale() const
 {
 	return this->scal;
 }
 
-
-void GraphicObjects::draw()
+void GraphicObject::draw()
 {
-	/// сохранение текущей матрицы
+	/// СЃРѕС…СЂР°РЅРµРЅРёРµ С‚РµРєСѓС‰РµР№ РјР°С‚СЂРёС†С‹
 	glPushMatrix();
 
-	/// применение модельной матрицы к объекту
+	/// РїСЂРёРјРµРЅРµРЅРёРµ РјРѕРґРµР»СЊРЅРѕР№ РјР°С‚СЂРёС†С‹ Рє РѕР±СЉРµРєС‚Сѓ
 	glMultMatrixf(value_ptr(modelMatrix));
 
-	/// усатновка цвета объекта
+	/// СѓСЃР°С‚РЅРѕРІРєР° С†РІРµС‚Р° РѕР±СЉРµРєС‚Р°
 	glColor3f(color.r, color.g, color.b);
 
-	/// отрисовка объекта
-	glutWireTeapot(1.f);
+	/// РѕС‚СЂРёСЃРѕРІРєР° РѕР±СЉРµРєС‚Р°
+	glutWireTeapot(1.0f);
 
-	/// восстановление матрицы
+	/// РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РјР°С‚СЂРёС†С‹
 	glPopMatrix();
 }
 
-void GraphicObjects::recalculateModelMatrix()
+void GraphicObject::recalculateModelMatrix()
 {
 	modelMatrix = mat4(1.0f);
 
-	/// перемещение объкта
+	/// РїРµСЂРµРјРµС‰РµРЅРёРµ РѕР±СЉРєС‚Р°
 	modelMatrix = translate(modelMatrix, position);
-	/// поворот объекта
-	modelMatrix = rotate(modelMatrix, radians(angle), vec3(0.0f, 1.0f, 0.0f)); // поворот вокруг оси Y
 
-	modelMatrix = scale(modelMatrix, scal); // масшатирование модели
-	
+	/// РјР°СЃС€Р°Р±РёСЂРѕРІР°РЅРёРµ РѕР±СЉРµРєС‚Р°
+	//modelMatrix = scale(modelMatrix, scal); // РјР°СЃС€Р°С‚РёСЂРѕРІР°РЅРёРµ РјРѕРґРµР»Рё
+
+	/// РїРѕРІРѕСЂРѕС‚ РѕР±СЉРµРєС‚Р°
+	modelMatrix = rotate(modelMatrix, radians(angle), vec3(0.0f, 1.0f, 0.0f)); // РїРѕРІРѕСЂРѕС‚ РІРѕРєСЂСѓРі РѕСЃРё Y
+
 }
 

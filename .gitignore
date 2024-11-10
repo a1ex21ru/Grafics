@@ -362,3 +362,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Camera.h
+/freeglut.dll
+/Grafics_1.vcxproj
+/Grafics_1.vcxproj.filters
+/Grafics_4.sln

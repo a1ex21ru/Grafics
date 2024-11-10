@@ -1,5 +1,5 @@
 #pragma once
-// graphicObjects.h
+
 #include "GL/freeglut.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -14,11 +14,10 @@
 
 using namespace glm;
 
-class GraphicObjects
+class GraphicObject
 {
 public:
-
-	GraphicObjects();
+	GraphicObject();
 
 	// позиция
 	void setPosition(vec3 position);
@@ -34,7 +33,7 @@ public:
 
 	// масштаб модели
 	void setScale(vec3 scale);
-	vec3 getScale();
+	vec3 getScale() const;
 
 	// вывод объекта
 	void draw();
@@ -42,10 +41,10 @@ public:
 private:
 
 	// позиция объекта в глобальной области
-	vec3 position{ 0 };
+	vec3 position;
 
 	// угол поворота по горизонтальной области
-	float angle = 0;
+	float angle;
 
 	// цвет модели
 	vec3 color;
@@ -54,9 +53,8 @@ private:
 	vec3 scal;
 
 	// Матрица модели (расположение объекта) - чтобы не вычислять каждый раз
-	mat4 modelMatrix = mat4(1.f);
+	mat4 modelMatrix;
 
 	// расчет modelMatrix на основе position и angle
 	void recalculateModelMatrix();
-
 };
