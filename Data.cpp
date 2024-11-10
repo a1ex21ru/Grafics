@@ -18,7 +18,8 @@ int framecount = 0;
 vector <GraphicObject> models;
 vector <vec3> colors;
 
-void init() {
+void init() 
+{
 	QueryPerformanceFrequency(&frequency);
 	QueryPerformanceCounter(&start);
 }

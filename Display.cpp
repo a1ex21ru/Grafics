@@ -2,16 +2,20 @@
 
 void display(void)
 {
+	// отчищаем буфер цвета и буфер глубины
 	glClearColor(0.00, 0.00, 0.00, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+	// включаем тест глубины
 	glEnable(GL_DEPTH_TEST);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	camera.apply();
 
+	QueryPerformanceCounter(&end);
+	// выводим все графические объекты
 	for (auto& go : models) {
+
 		go.draw();
 	}
 	framecount++;
@@ -28,4 +32,6 @@ void display(void)
 		framecount = 0;
 		QueryPerformanceCounter(&start);
 	}
+
+	glutPostRedisplay();
 };
