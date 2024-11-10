@@ -13,7 +13,9 @@ void reshape(int w, int h)
 	gluPerspective(25.0, (float)w / h, 0.2, 70.0);
 };
 
-void mouse_wheel(int button, int dir, int x, int y) {
+
+void mouse_wheel(int button, int dir, int x, int y) 
+{
 	if (dir > 0) {
 		camera.zoomInOut(-wheel_sensitive);
 		std::cout << "-zoom" << std::endl;

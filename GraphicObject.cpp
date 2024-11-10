@@ -79,6 +79,5 @@ void GraphicObject::recalculateModelMatrix()
 
 	/// поворот объекта
 	modelMatrix = rotate(modelMatrix, radians(angle), vec3(0.0f, 1.0f, 0.0f)); // поворот вокруг оси Y
-
 }
 
