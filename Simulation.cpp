@@ -1,80 +1,53 @@
 #include "Simulation.h"
 #include "Data.h"
 
-// ôóíêöèÿ, âûçûâàåìàÿ ïðè èçìåíåíèè ðàçìåðîâ îêíà
+// Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ, Ð²Ñ‹Ð·Ñ‹Ð²Ð°ÐµÐ¼Ð°Ñ Ð¿Ñ€Ð¸ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ð¸ Ñ€Ð°Ð·Ð¼ÐµÑ€Ð¾Ð² Ð¾ÐºÐ½Ð°
 void reshape(int w, int h)
 {
-	// óñòàíîâèòü íîâóþ îáëàñòü ïðîñìîòðà, ðàâíóþ âñåé îáëàñòè îêíà
+	// ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ð½Ð¾Ð²ÑƒÑŽ Ð¾Ð±Ð»Ð°ÑÑ‚ÑŒ Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð°, Ñ€Ð°Ð²Ð½ÑƒÑŽ Ð²ÑÐµÐ¹ Ð¾Ð±Ð»Ð°ÑÑ‚Ð¸ Ð¾ÐºÐ½Ð°
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 
-	// óñòàíîâèòü ìàòðèöó ïðîåêöèè ñ ïðàâèëüíûì àñïåêòîì
+	// ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñƒ Ð¿Ñ€Ð¾ÐµÐºÑ†Ð¸Ð¸ Ñ Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¼ Ð°ÑÐ¿ÐµÐºÑ‚Ð¾Ð¼
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(25.0, (float)w / h, 0.2, 70.0);
 };
 
-void mouse_wheel(int button, int dir, int x, int y) 
-{
+void mouse_wheel(int button, int dir, int x, int y) {
 	if (dir > 0) {
 		camera.zoomInOut(-wheel_sensitive);
+		std::cout << "-zoom" << std::endl;
 	}
 	if (dir < 0) {
 		camera.zoomInOut(wheel_sensitive);
-	}
-	std::cout << "Ïðîêðó÷èâàåòñÿ" << std::endl;
-
-	glutPostRedisplay();
-}
-
-void cursor()
-{
-	POINT cursor_pos;
-	GetCursorPos(&cursor_pos);
-	if (first_mouse_movement) {
-		prev_cursor_pos = cursor_pos;
-		first_mouse_movement = 0;
+		std::cout << "+zoom" << std::endl;
 	}
 
-	int deltaY = cursor_pos.y - prev_cursor_pos.y;
-	int deltaX = cursor_pos.x - prev_cursor_pos.x;
-	if (deltaY != 0) {
-		camera.rotateUpDown(deltaY * rotateUDSens);
-	}
-	if (deltaX != 0) {
-		camera.rotateLeftRight(deltaX * rotateLRSens);
-	}
-	prev_cursor_pos = cursor_pos;
 	glutPostRedisplay();
 }
 
 void keyboard()
 {
-	if (GetAsyncKeyState(VK_UP)) 
-	{
+	if (GetAsyncKeyState(VK_UP)) {
 		camera.rotateUpDown(1.5);
 	}
-	if (GetAsyncKeyState(VK_DOWN)) 
-	{
+	if (GetAsyncKeyState(VK_DOWN)) {
 		camera.rotateUpDown(-1.5);
 	}
-	if (GetAsyncKeyState(VK_RIGHT)) 
-	{
-		camera.rotateLeftRight(1.5);
-	}
-	if (GetAsyncKeyState(VK_LEFT)) 
-	{
+	if (GetAsyncKeyState(VK_RIGHT)) {
 		camera.rotateLeftRight(-1.5);
+	}
+	if (GetAsyncKeyState(VK_LEFT)) {
+		camera.rotateLeftRight(1.5);
 	}
 	glutPostRedisplay();
 
 };
 
-
-// ôóíêöèÿ âûçûâàåòñÿ êàæäûå 20 ìñ
+// Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ Ð²Ñ‹Ð·Ñ‹Ð²Ð°ÐµÑ‚ÑÑ ÐºÐ°Ð¶Ð´Ñ‹Ðµ 20 Ð¼Ñ
 void simulation()
 {
-	cursor();
 	keyboard();
-	// óñòàíàâëèâàåì ïðèçíàê òîãî, ÷òî îêíî íóæäàåòñÿ â ïåðåðèñîâêå
+	// ÑƒÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ Ð¿Ñ€Ð¸Ð·Ð½Ð°Ðº Ñ‚Ð¾Ð³Ð¾, Ñ‡Ñ‚Ð¾ Ð¾ÐºÐ½Ð¾ Ð½ÑƒÐ¶Ð´Ð°ÐµÑ‚ÑÑ Ð² Ð¿ÐµÑ€ÐµÑ€Ð¸ÑÐ¾Ð²ÐºÐµ
 	glutPostRedisplay();
 };
