@@ -1,16 +1,18 @@
 #pragma once
 
-#include "GL/freeglut.h"
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glut.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <iostream>
-#include <stdio.h>
-#include <vector>
 #include <windows.h>
+#include <vector>
+#include "glm\glm.hpp"
+#include "GL\freeglut.h";
+#include <iostream>
+#include <GL\gl.h>
+#include <GL\glu.h>
+#include <glm\gtc\matrix_transform.hpp>
+#include <glm\gtc\type_ptr.hpp> 
+#include "string"
+#include "cstdio"
+#include "PhongMaterial.h"
+#include <memory>
 
 using namespace glm;
 
@@ -23,17 +25,20 @@ public:
 	void setPosition(vec3 position);
 	vec3 getPosition() const;
 
-	//установка и получение угла
+	// установка и получение угла
 	void setAngle(float grad);
 	float getAngle() const;
 
-	//установка цвета
+	// установка цвета
 	void setColor(vec3 color);
 	vec3 getColor() const;
 
 	// масштаб модели
 	void setScale(vec3 scale);
 	vec3 getScale() const;
+
+	void setMaterial(shared_ptr<PhongMaterial> m);
+	void setMaterial(shared_ptr<PhongMaterial> m, int mode);
 
 	// вывод объекта
 	void draw();
@@ -48,6 +53,8 @@ private:
 
 	// цвет модели
 	vec3 color;
+
+	shared_ptr <PhongMaterial> material = make_shared<PhongMaterial>();
 
 	// масштаб модели
 	vec3 scal;

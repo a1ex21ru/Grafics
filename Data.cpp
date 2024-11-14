@@ -1,22 +1,32 @@
 #include "Data.h"
+#define SHPH shared_ptr<PhongMaterial>
+
 // используемые пространства имен
 using namespace glm;
 using namespace std;
 
+LARGE_INTEGER frequency;
+LARGE_INTEGER start;
+LARGE_INTEGER tend;
+int fps = 0.0f;
+int framecount = 0;
+
+double degreees = 0.5;
+
 // список графических объектов
-vector<GraphicObject> graphicObjects;
+vector <GraphicObject> models;
+vector <vec3> colors;
 
 // используемая камера
 Camera camera(15, 20, 25);
 
-LARGE_INTEGER frequency;
-LARGE_INTEGER start;
-LARGE_INTEGER end;
-int fps = 0.0f;
-int framecount = 0;
+// Объект света
+Light light(20, 20, 15);
 
-vector <GraphicObject> models;
-vector <vec3> colors;
+shared_ptr<PhongMaterial> m1 = make_shared<PhongMaterial>();
+shared_ptr<PhongMaterial> m2 = make_shared<PhongMaterial>();
+shared_ptr<PhongMaterial> m3 = make_shared<PhongMaterial>();
+shared_ptr<PhongMaterial> m4 = make_shared<PhongMaterial>();
 
 void init() 
 {
@@ -26,16 +36,15 @@ void init()
 
 float wheel_sensitive = 0.5;
 
-vec3 normal_one{ 10 };
-
-// функция для инициализации всех общих данных (камера, объекты и т.д.)
 void initData()
 {
 	const int SIZE = 4;
 	int offset = 5;
 
+	vector<SHPH> materials{ m1, m2, m3, m4 };
+
 	colors = {
-		{ 1.0, 0.0, 0.0 },  // красный
+		//{ 1.0, 0.0, 0.0 },  // красный
 		{ 0.0, 1.0, 0.0 },  // зеленый
 		{ 0.0, 0.0, 1.0 },  // синий
 		{ 1.0, 0.0, 1.0 },  // фиолетовый
@@ -53,9 +62,9 @@ void initData()
 		temp[i].setAngle(i * 90.f);
 		temp[i].setColor(colors[i]);
 		temp[i].setPosition(pos[i]);
-		temp[i].setScale(vec3(1.f, 2.f, 1.f));
+		temp[i].setMaterial(materials[i], i + 1);
 		models.push_back(temp[i]);
 	}
-	models[0].setScale((normal_one));
+	light.apply();
 
 }

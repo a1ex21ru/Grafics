@@ -1,9 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
-#pragma once
+
 #include "Data.h"
 #include "Simulation.h"
 #include "Display.h"
-
+#include "PhongMaterial.h"
+#include "Light.h"
 
 int main(int argc, char** argv)
 {
@@ -20,13 +21,12 @@ int main(int argc, char** argv)
 	// 2. устанавливаем размер окна
 	glutInitWindowSize(800, 600);
 	// 3. создаем окно
-	glutCreateWindow("Lab_4");
-	glClear;
+	glutCreateWindow("Lab_5");
+	
 	init();
 	initData();
 
-
-	// УСТАНОВКА ФУНКЦИЙ ОБРАТНОГО ВЫЗОВА
+	/// УСТАНОВКА ФУНКЦИЙ ОБРАТНОГО ВЫЗОВА
 	// устанавливаем функцию, которая будет вызываться для перерисовки окна
 	glutDisplayFunc(display);
 

@@ -31,16 +31,16 @@ void mouse_wheel(int button, int dir, int x, int y)
 void keyboard()
 {
 	if (GetAsyncKeyState(VK_UP)) {
-		camera.rotateUpDown(1.5);
+		camera.rotateUpDown(degreees);
 	}
 	if (GetAsyncKeyState(VK_DOWN)) {
-		camera.rotateUpDown(-1.5);
+		camera.rotateUpDown(-degreees);
 	}
 	if (GetAsyncKeyState(VK_RIGHT)) {
-		camera.rotateLeftRight(-1.5);
+		camera.rotateLeftRight(-degreees);
 	}
 	if (GetAsyncKeyState(VK_LEFT)) {
-		camera.rotateLeftRight(1.5);
+		camera.rotateLeftRight(degreees);
 	}
 	glutPostRedisplay();
 
