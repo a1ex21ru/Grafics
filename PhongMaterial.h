@@ -1,10 +1,10 @@
 #pragma once
-
 #include "Header.h"
 
 using namespace std;
 using namespace glm;
 
+// ÊËÀÑÑ ÄËß ĞÀÁÎÒÛ Ñ ÌÀÒÅĞÈÀËÎÌ
 class PhongMaterial
 {
 public:

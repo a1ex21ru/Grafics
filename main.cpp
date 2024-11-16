@@ -1,10 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "Data.h"
-#include "Simulation.h"
 #include "Display.h"
-#include "PhongMaterial.h"
 #include "Light.h"
+#include "PhongMaterial.h"
+#include "Simulation.h"
 
 int main(int argc, char** argv)
 {

@@ -39,12 +39,12 @@ float wheel_sensitive = 0.5;
 void initData()
 {
 	const int SIZE = 4;
-	int offset = 5;
+	int offset = 4;
 
 	vector<SHPH> materials{ m1, m2, m3, m4 };
 
 	colors = {
-		//{ 1.0, 0.0, 0.0 },  // красный
+		{ 1.0, 0.0, 0.0 },  // красный
 		{ 0.0, 1.0, 0.0 },  // зеленый
 		{ 0.0, 0.0, 1.0 },  // синий
 		{ 1.0, 0.0, 1.0 },  // фиолетовый
@@ -59,12 +59,22 @@ void initData()
 
 	for (size_t i = 0; i < SIZE; i++)
 	{
-		temp[i].setAngle(i * 90.f);
+		temp[i].setAngle(i * 60.f);
 		temp[i].setColor(colors[i]);
 		temp[i].setPosition(pos[i]);
-		temp[i].setMaterial(materials[i], i + 1);
+		temp[i].setMaterial(materials[i], i);
 		models.push_back(temp[i]);
 	}
+	/*models[0].setMaterial(m1, 0);
+	models[1].setMaterial(m2, 1);
+	models[2].setMaterial(m3, 2);
+	models[3].setMaterial(m4, 3);*/
+
+	light.setAmbient(vec4(0.2, 0.2, 0.2, 1.0));
+	light.setPosition(vec3(5, 15, 0));
+	light.setDiffuse(vec4(1.0, 1.0, 1.0, 1.0));
+	light.setSpecular(vec4(1.0, 1.0, 1.0, 1.0));
+
 	light.apply();
 
 }

@@ -37,12 +37,13 @@ void PhongMaterial::setShininess(float sh)
 void PhongMaterial::load(string filename) 
 {
 	this->filename = filename;
+	
 	ifstream file(filename);
 	shared_ptr<PhongMaterial> m = make_shared<PhongMaterial>();
 	if (file.is_open() && m != nullptr) {
 
 		string in;
-		cout << "File open!" << endl;
+		cout << "File is open!\t " << filename.substr(filename.rfind('/') + 1) << endl;
 		float x, y, z, w;
 
 		file >> x >> y >> z >> w;

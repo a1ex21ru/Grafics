@@ -37,7 +37,7 @@ public:
 	void setScale(vec3 scale);
 	vec3 getScale() const;
 
-	void setMaterial(shared_ptr<PhongMaterial> m);
+	//void setMaterial(shared_ptr<PhongMaterial> m);
 	void setMaterial(shared_ptr<PhongMaterial> m, int mode);
 
 	// вывод объекта

@@ -1,17 +1,18 @@
 #pragma once
 
-#include <windows.h>
-#include <vector>
-#include "glm\glm.hpp"
-#include "GL\freeglut.h";
-#include <iostream>
+#include <cstdio>
+#include <GL\freeglut.h>
 #include <GL\gl.h>
 #include <GL\glu.h>
+#include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
 #include <glm\gtc\type_ptr.hpp> 
-#include "string"
-#include "cstdio"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <windows.h>
 
+using namespace glm;
 
 // КЛАСС ДЛЯ РАБОТЫ С ИСТОЧНИКОМ СВЕТА
 class Light
@@ -26,7 +27,6 @@ public:
 	void setAmbient(vec4 color);
 	void setDiffuse(vec4 color);
 	void setSpecular(vec4 color);
-
 	// установка всех параметров источника света с заданным номером
 	// данная функция должна вызываться после установки камеры,
 	// т.к. здесь устанавливается позиция источника света

@@ -51,25 +51,26 @@ vec3 GraphicObject::getScale() const
 	return this->scal;
 }
 
-
 void GraphicObject::setMaterial(shared_ptr<PhongMaterial> m, int mode)
 {
 	cout << "Method setMaterial called!" << endl;
 	switch (mode)
 	{
-	case 1:
+	case 0:
 		m->load("D:/Users/User/source/repos/Grafics_4/materials/material_1.txt");
 		break;
 
+	case 1:
+		m->load("D:/Users/User/source/repos/Grafics_4/materials/material_2.txt");
+		break;
+
 	case 2:
-		m->load("material2.txt");
+		m->load("D:/Users/User/source/repos/Grafics_4/materials/material_3.txt");
 		break;
 
 	case 3:
-		m->load("material3.txt");
-
-	case 4:
-		m->load("materail4.txt");
+		m->load("D:/Users/User/source/repos/Grafics_4/materials/material_4.txt");
+		break;
 
 	default:
 		break;
@@ -86,7 +87,7 @@ void GraphicObject::draw()
 	/// применение модельной матрицы к объекту
 	glMultMatrixf(value_ptr(modelMatrix));
 
-	/// усатновка цвета объекта
+	/// установка цвета объекта
 	glColor3f(color.r, color.g, color.b);
 
 	material->apply();

@@ -3,8 +3,11 @@
 #include "Camera.h"
 #include "GraphicObject.h"
 #include "Light.h"
+#include "PhongMaterial.h"
 #include <cstdio>
 #include <GL\freeglut.h>
+#include <GL\gl.h>
+#include <GL\glu.h>
 #include <GL\glut.h>
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
@@ -13,7 +16,6 @@
 #include <string>
 #include <vector>
 #include <windows.h>
-#include "PhongMaterial.h"
 
 // список графических объектов
 extern std::vector<GraphicObject> models;

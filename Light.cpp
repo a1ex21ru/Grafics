@@ -1,7 +1,5 @@
 #include "Light.h"
 
-using namespace glm;
-
 Light::Light() {};
 
 Light::Light(vec3 position) {
@@ -16,7 +14,6 @@ Light::Light(float x, float y, float z) {
 	position.x = x;
 	position.y = y;
 	position.z = z;
-
 };
 
 // задание различных параметров источника света
@@ -31,6 +28,7 @@ void Light::setPosition(vec3 position) {
 void Light::setAmbient(vec4 color) {
 
 	this->ambient = color;
+
 };
 
 void Light::setDiffuse(vec4 color) {
@@ -48,7 +46,8 @@ void Light::setSpecular(vec4 color) {
 // данная функция должна вызываться после установки камеры,
 // т.к. здесь устанавливается позиция источника света
 
-void Light::apply() {
+void Light::apply()
+{
 
 	glEnable(GL_LIGHT0);
 	GLfloat diffuse_array[] = { diffuse.x, diffuse.y, diffuse.z, diffuse.w };

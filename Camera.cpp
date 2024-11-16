@@ -34,8 +34,7 @@ void Camera::rotateLeftRight(float degree)
     angleX += degree;
     if (angleX > 180.0f) angleX -= 360.0f;
     if (angleX < -180.0f) angleX += 360.0f;
-    // Ќормализуем угол в диапазоне от 0 до 360 градусов
-   // angleX = fmod(angleX, 360.0f);
+
     // ѕересчитываем позицию камеры
     std::cout << angleY << std::endl;
     recalculatePosition();
@@ -62,14 +61,29 @@ void Camera::zoomInOut(float distance)
     recalculatePosition();
 };
 
-vec3 Camera::getPosition() const 
+void Camera::setPosition(vec3 position)
+{
+    // определ€ем радиус - рассто€ние от начала системы координат до заданной позиции
+    r = length(position);
+
+    // ќпредел€ем вертикальный угол (angleY), использу€ atan2
+    angleY = degrees(atan2(position.y, length(vec2(position.x, position.z)))); // ”гол по вертикали
+
+    // ќпредел€ем горизонтальный угол (angleX), использу€ atan2
+    angleX = degrees(atan2(position.z, position.x)); // ”гол по горизонтали
+
+    // ѕересчитываем позицию камеры
+    recalculatePosition();
+}
+
+vec3 Camera::getPosition() const
 {
     return position;
 };
 
 void Camera::recalculatePosition()
 {
-    getPosition();
+    //getPosition();
     // ѕереводим углы в радианы
     float radX = radians(angleX);
     float radY = radians(angleY);
