@@ -42,6 +42,8 @@ vec3 GraphicObject::getColor() const
 void GraphicObject::setScale(vec3 scale)
 {
 	this->scal = scale;
+
+	recalculateModelMatrix();
 }
 
 vec3 GraphicObject::getScale() const
@@ -75,7 +77,7 @@ void GraphicObject::recalculateModelMatrix()
 	modelMatrix = translate(modelMatrix, position);
 
 	/// масшабирование объекта
-	//modelMatrix = scale(modelMatrix, scal);
+	modelMatrix = scale(modelMatrix, scal);
 
 	/// поворот объекта
 	modelMatrix = rotate(modelMatrix, radians(angle), vec3(0.0f, 1.0f, 0.0f)); // поворот вокруг оси Y

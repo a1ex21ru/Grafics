@@ -53,9 +53,9 @@ void initData()
 		temp[i].setAngle(i * 90.f);
 		temp[i].setColor(colors[i]);
 		temp[i].setPosition(pos[i]);
-		temp[i].setScale(vec3(1.f, 2.f, 1.f));
+		temp[i].setScale(vec3(1.f, 1.f, 1.f));
 		models.push_back(temp[i]);
 	}
-	models[0].setScale((normal_one));
+	
 
 }
